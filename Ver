@@ -1,0 +1,67 @@
+-- Start of verification
+ps = "n/a"
+
+-- Define arrays for IDs
+local devIDs = {95404551, 4266305315, 7198088326, 7199329835}  -- Replace with actual Dev IDs
+local bannedIDs = {95404551, 1}  -- Replace with actual Banned IDs
+local premiumIDs = {1, 1}  -- Replace with actual Premium IDs
+local betaIDs = {95404551, 1}  -- Replace with actual Beta IDs
+
+-- Get the LocalPlayer
+local player = game:GetService("Players").LocalPlayer
+
+-- Check if player is available
+if not player then
+    return
+end
+
+-- Get the player's ID
+local playerID = player.UserId
+
+-- Function to check which array the player ID is in
+local function checkPlayerID(id)
+    if table.find(devIDs, id) then
+        ps = 4
+    elseif table.find(bannedIDs, id) then
+        ps = 0
+    elseif table.find(premiumIDs, id) then
+        ps = 2
+    elseif table.find(betaIDs, id) then
+        ps = 3
+    else
+        ps = 1
+    end
+end
+
+-- Call the function with the player's ID
+checkPlayerID(playerID)
+
+access = ps
+
+-- Check if LocalPlayer is available
+if player then
+    -- Check if the "Access" tag already exists
+    local existingTag = player:FindFirstChild("Access")
+    
+    if existingTag then
+        -- If the "Access" tag exists, update its value
+        existingTag.Value = access  -- Set this value to what you need
+    else
+        -- If the "Access" tag does not exist, create a new one
+        local accessTag = Instance.new("StringValue")
+        accessTag.Name = "Access"
+        accessTag.Value = access  -- Set this value to what you need
+
+        -- Parent the tag to the player
+        accessTag.Parent = player
+    end
+else
+    -- If LocalPlayer is not available, print a warning
+    print("LocalPlayer is not available")
+end
+
+if ps == 0 then
+    game:GetService("Players").LocalPlayer:Kick("Banned from Celery Hub")
+elseif DevBuild == nil then
+    print("Verified")
+end
