@@ -1,0 +1,94 @@
+-- Celery Hub status
+Version = "2.0"
+Status = ("Online") -- Online, Down, 
+Reason = ("Test") -- Reasoning as to why Celery Hub is down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Executor = identifyexecutor()
+
+local ExecWhiteList = {"Celery", "s"}
+local ExecBlackList = {"s", "s"}
+local ExecNotList = {"s", "s"}
+local ExecCrashList = {"Solara", "s"}
+
+if table.find(ExecWhiteList, Executor) then
+    print("Executor is Whitlisted")
+    Whitelisted = true
+elseif table.find(ExecBlackList, Executor) then
+    game:GetService("Players").LocalPlayer:Kick("Executor is Blacklisted")
+elseif table.find(ExecNotList, Executor) then
+    game:GetService("Players").LocalPlayer:Kick("Executor is Not suported")
+elseif table.find(ExecCrashList, Executor) then
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/crash')))()
+else
+    print("Executor has not been tested")
+    Whitelisted = false
+end
+
+verlink = "https://github.com/MAJESTY5164/CeleryHub/blob/main/Ver" -- Link to Verification code
+
+-- Get the LocalPlayer
+local player = game:GetService("Players").LocalPlayer
+if Status == "Down" then
+    player:Kick("Celery Hub is offline - " .. Reason)
+elseif Status == "Online" then
+    if DevBuild == nil then
+    loadstring(game:HttpGet(verlink))() -- Load Start of verification
+    end
+end
+
+-- Check if LocalPlayer is available
+if player then
+    -- Check if the "ver" tag already exists
+    local existingTag = player:FindFirstChild("ver")
+    
+    if existingTag then
+        -- If the "ver" tag exists, update its value
+        existingTag.Value = Version  -- Set this value to what you need
+    else
+        -- If the "ver" tag does not exist, create a new one
+        local verTag = Instance.new("StringValue")
+        verTag.Name = "ver"
+        verTag.Value = Version  -- Set this value to what you need
+
+        -- Parent the tag to the player
+        verTag.Parent = player
+    end
+else
+    -- If LocalPlayer is not available, print a warning
+    print("LocalPlayer is not available")
+end 
+ -- Check if the "ver" tag already exists
+ local existingTag = player:FindFirstChild("exe")
+    
+ if existingTag then
+     -- If the "ver" tag exists, update its value
+     existingTag.Value = Executor  -- Set this value to what you need
+ else
+     -- If the "ver" tag does not exist, create a new one
+     local exeTag = Instance.new("StringValue")
+     exeTag.Name = "exe"
+     exeTag.Value = Executor  -- Set this value to what you need
+
+     -- Parent the tag to the player
+     exeTag.Parent = player
+ end
+Executor = nil
