@@ -1,0 +1,692 @@
+-- Start of HUB
+local text = Drawing.new("Text")
+text.Text = ("Loading")
+text.Size = 30
+text.Position = Vector2.new(1700,10)
+text.Visible = false
+-- Get the LocalPlayer
+local player = game:GetService("Players").LocalPlayer
+
+-- Check if LocalPlayer is available
+if player then
+    -- Find the "ver" tag
+    local verTag = player:FindFirstChild("ver")
+    
+    if verTag then
+        -- If the "Access" tag exists, print its value
+        Version = verTag.Value
+    else
+        -- If the "Access" tag does not exist, print a message
+    end
+else
+    -- If LocalPlayer is not available, print a warning
+end
+
+-- Check if LocalPlayer is available
+if player then
+    -- Find the "Access" tag
+    local verTag = player:FindFirstChild("ver")
+    verTag:Destroy()
+end
+
+-- Get the LocalPlayer
+local player = game:GetService("Players").LocalPlayer
+
+-- Check if LocalPlayer is available
+if player then
+    -- Find the "exe" tag
+    local exeTag = player:FindFirstChild("exe")
+    
+    if exeTag then
+        -- If the "Access" tag exists, print its value
+        Executor = exeTag.Value
+    else
+        -- If the "Access" tag does not exist, print a message
+    end
+else
+    -- If LocalPlayer is not available, print a warning
+end
+
+-- Check if LocalPlayer is available
+if player then
+    -- Find the "Access" tag
+    local exeTag = player:FindFirstChild("exe")
+    exeTag:Destroy()
+end
+-- Get the LocalPlayer
+
+-- Check if LocalPlayer is available
+if player then
+    -- Find the "Access" tag
+    local accessTag = player:FindFirstChild("Access")
+    
+    if accessTag then
+        -- If the "Access" tag exists, print its value
+        ps = accessTag.Value
+    else
+        -- If the "Access" tag does not exist, print a message
+    end
+else
+    -- If LocalPlayer is not available, print a warning
+end
+
+-- Check if LocalPlayer is available
+if player then
+    -- Find the "Access" tag
+    local accessTag = player:FindFirstChild("Access")
+    accessTag:Destroy()
+end
+
+
+getgenv().Icon = "Orion" -- Orion or paste a custom rbxassetid
+getgenv().Name = "Celery"
+         Theme = "Majestic" -- Orion, Celery, or Custom
+
+if Theme == "Custom" then
+    getgenv().MainRed = 0
+    getgenv().MainGreen = 0
+    getgenv().MainBlue = 0
+
+    getgenv().SecondRed = 0
+    getgenv().SecondGreen = 0
+    getgenv().SecondBlue = 0
+
+    getgenv().StrokeRed = 0
+    getgenv().StrokeGreen = 0
+    getgenv().StrokeBlue = 0
+
+    getgenv().DividerRed = 0
+    getgenv().DividerGreen = 0
+    getgenv().DividerBlue = 0
+
+    getgenv().TextRed = 0
+    getgenv().TextGreen = 0
+    getgenv().TextBlue = 0
+
+    getgenv().TextDarkRed = 0
+    getgenv().TextDarkGreen = 0
+    getgenv().TextDarkBlue = 0
+
+    getgenv().Theme = "Custom"
+else
+    getgenv().Theme = Theme
+end
+
+
+local MajesticLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/CeleryHub-official/Majestic-Lib/main/Lib%20Source')))()
+
+lvl = tonumber(ps)
+
+if lvl == 1 then
+    access = "User"
+elseif lvl == 2 then
+    access = "Premium"
+elseif lvl == 3 then
+    access = "Beta"
+elseif lvl == 4 then
+    access = "Dev"
+end
+
+if DevBuild == true then
+    WinName = "Celery Hub Dev Build"
+else
+    WinName = "Celery Hub"
+end
+
+if lvl == 1 then
+Window = WinName
+else
+Window = WinName .. " - " .. access
+end
+
+if Whitelisted == true then
+    WindowName = Window
+else
+    WindowName = (Window .. " [Untested]")
+end
+local Window = MajesticLib:MakeWindow({Name = WindowName, HidePremium = true, SaveConfig = true, ConfigFolder = "MajesticTest"})
+
+--[[
+Name = <string> - The name of the UI.
+HidePremium = <bool> - Whether or not the user details shows Premium status or not.
+SaveConfig = <bool> - Toggles the config saving in the UI.
+ConfigFolder = <string> - The name of the folder where the configs are saved.
+IntroEnabled = <bool> - Whether or not to show the intro animation.
+IntroText = <string> - Text to show in the intro animation.
+IntroIcon = <string> - URL to the image you want to use in the intro animation.
+Icon = <string> - URL to the image you want displayed on the window.
+CloseCallback = <function> - Function to execute when the window is closed.
+]]
+
+GameID = game.PlaceId
+
+
+-- AUTO EXEC
+
+
+
+AutoExecFound = false
+GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+-- Game Name
+        -- BETA
+        local gamenames = {
+            "RIVALS";
+            "Blade";
+            "Cat Piece";
+            "Casual";
+            "Ranked";
+            "Arsenal";
+            "Da Hood";
+            "Pressure";
+            "Color or Die";
+        }
+
+         -- Function to count the number of entries in the table
+         local function countEntries(tbl)
+            local count = 0
+            for _ in pairs(tbl) do
+                count = count + 1
+            end
+            return count
+        end
+
+        -- Get the number of entries
+        local numberOfEntries = countEntries(gamenames)
+
+        Search = 0
+
+        for i = 1, numberOfEntries do
+
+           Search = Search + 1
+
+        
+        gamesearch = gamenames[Search]
+
+                    
+               if string.find(GameName, gamesearch) then
+                    AutoExecFound = true
+					print(AutoExecFound)
+                    gs = gamesearch
+
+            end
+        end
+        -- End of Auto Exec
+
+-- Info Tab
+if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+    local Tab = Window:MakeTab({
+        Name = "Info",
+        Icon = "rbxassetid://4483345998",
+    })
+
+    Tab:AddLabel("Game Name - " .. GameName)
+    Tab:AddLabel("Celery Hub access level - " .. access)
+    Tab:AddLabel("Celery Hub Version - " .. Version)
+    Tab:AddLabel("Executor - " .. Executor)
+        
+    if lvl >= 1 and AutoExecFound ~= false then -- if lvl is greater than or equal to 3(beta) and AutoExecFound isnt false then
+
+            autoExecName = ("Execute Scripts for " .. GameName)
+
+        Tab:AddButton({
+            Name = autoExecName,
+            Callback = function()
+                MajesticLib:Destroy()
+
+
+                -- AUTO EXEC
+AutoExecFound = false
+GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+-- Game Name
+
+         -- Function to count the number of entries in the table
+         local function countEntries(tbl)
+            local count = 0
+            for _ in pairs(tbl) do
+                count = count + 1
+            end
+            return count
+        end
+
+        -- Get the number of entries
+        local numberOfEntries = countEntries(gamenames)
+
+        Search = 0
+
+        for i = 1, numberOfEntries do
+
+           Search = Search + 1
+
+        
+        gamesearch = gamenames[Search]
+
+                    
+               if string.find(GameName, gamesearch) then
+                    AutoExecFound = true
+					print(AutoExecFound)
+                    gs = gamesearch
+
+            end
+        end
+
+        if AutoExecFound == true then
+
+        script1 = nil
+        script2 = nil
+        script3 = nil
+
+        if gs == "Casual" or gs == "Ranked" then
+            script1 = "https://raw.githubusercontent.com/Exunys/AirHub/main/AirHub.lua"
+        elseif gs == "RIVALS" then
+            local scriptURL = 'https://raw.githubusercontent.com/Sheeshablee73/Scriptss/main/RivalsUPD2.lua'
+        local response = game:HttpGet(scriptURL)
+        local executeScript = loadstring(response)
+        executeScript()
+        elseif gs == "Blade" then
+            script1 = "https://raw.githubusercontent.com/000177171/mantain-scripts/main/BB/TripleHub"
+        elseif gs == "Cat Piece" then
+            script1 = "https://raw.githubusercontent.com/Kaitofyp/Cat-Piece-V.2/main/Op%20script"
+        elseif gs == "Arsenal" then
+            script1 = "https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Arsenal%20Gui"
+        elseif gs == "Da Hood" then
+            script1 = "https://raw.githubusercontent.com/Exunys/AirHub/main/AirHub.lua"
+        elseif gs == "Pressure" then
+            script1 = "https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Pressure%20Gui"
+        elseif gs == "Color or Die" then
+            script1 = "https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Color%20or%20die"
+        end
+
+local player = game:GetService("Players").LocalPlayer
+
+
+
+            
+
+            if script1 ~= nil then 
+            loadstring(game:HttpGet(script1))()
+            end
+
+            if script2 ~= nil then
+                loadstring(game:HttpGet(script2))()
+            end
+
+            if script3 ~= nil then
+                loadstring(game:HttpGet(script3))()
+            end
+        end
+
+              end    
+        })
+    end
+    
+
+    end
+
+    -- END OF AUTO EXEC
+
+-- DEV Tab
+if lvl >= 4 then -- if lvl is grater than or equal to 4(Dev)
+local Tab = Window:MakeTab({
+	Name = "Dev",
+	Icon = "rbxassetid://4483345998",
+})
+
+Tab:AddLabel("Game ID - " .. GameID)
+
+Tab:AddDropdown({
+	Name = "Spoof access level",
+	Default = "User",
+	Options = {"User", "Premium", "Beta"},
+	Callback = function(Spooflvl)
+        if Spooflvl == "User" then
+            access = 1
+        elseif Spooflvl == "Premium" then
+            access = 2
+        elseif Spooflvl == "Beta" then
+            access = 3
+        end
+        print(access)
+	end    
+})
+
+
+Tab:AddButton({
+    Name = ("Reload"),
+    Callback = function()
+
+
+
+    local player = game:GetService("Players").LocalPlayer
+
+    -- Check if LocalPlayer is available
+    if player then
+    -- Check if the "ver" tag already exists
+    local existingTag = player:FindFirstChild("ver")
+    
+    if existingTag then
+        -- If the "ver" tag exists, update its value
+        existingTag.Value = Version  -- Set this value to what you need
+    else
+        -- If the "ver" tag does not exist, create a new one
+        local verTag = Instance.new("StringValue")
+        verTag.Name = "ver"
+        verTag.Value = Version  -- Set this value to what you need
+
+        -- Parent the tag to the player
+        verTag.Parent = player
+    end
+else
+    -- If LocalPlayer is not available, print a warning
+    print("LocalPlayer is not available")
+end 
+
+-- Check if LocalPlayer is available
+if player then
+    -- Check if the "Access" tag already exists
+    local existingTag = player:FindFirstChild("Access")
+    
+    if existingTag then
+        -- If the "Access" tag exists, update its value
+        existingTag.Value = access  -- Set this value to what you need
+    else
+        -- If the "Access" tag does not exist, create a new one
+        local accessTag = Instance.new("StringValue")
+        accessTag.Name = "Access"
+        accessTag.Value = access  -- Set this value to what you need
+
+        -- Parent the tag to the player
+        accessTag.Parent = player
+    end
+else
+    -- If LocalPlayer is not available, print a warning
+    print("LocalPlayer is not available")
+end
+
+hublink = "https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Celery%20Hub%20Main"
+
+loadstring(game:HttpGet(hublink))()
+      end    
+
+      
+})
+
+--[[
+Name = <string> - The name of the dropdown.
+Default = <string> - The default value of the dropdown.
+Options = <table> - The options in the dropdown.
+Callback = <function> - The function of the dropdown.
+]]
+
+
+        Tab:AddButton({
+            Name = "Quick Disconect",
+            Callback = function()
+                game:Shutdown()
+            end    
+        })
+
+
+        Tab:AddButton({
+            Name = "Debug Menu",
+            Callback = function()
+                MajesticLib:Destroy()
+                DebugUrl = "https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Debug%20menu"
+                loadstring(game:HttpGet(DebugUrl))()
+            end    
+        })
+end
+
+
+-- GAMES
+
+-- Universal
+if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+    local Tab = Window:MakeTab({
+        Name = "Universals",
+         Icon = "rbxassetid://4483345998",
+      })
+      Tab:AddButton({
+        Name = "Airhub - Made By Exunys",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/AirHub/main/AirHub.lua"))()
+          end    
+    })
+
+    Tab:AddButton({
+        Name = "Executor",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/FreezyWare/Remake-Executor/main/Executor/Krnl-Legacy.Lua"))()
+          end    
+    })
+
+    Tab:AddToggle({
+        Name = "Show Fps",
+        Default = false,
+        Callback = function(Value)
+            print(Value)
+            text.Visible = Value
+        end    
+    })
+
+    Tab:AddButton({
+        Name = "Esp - Made By MAJESTY",
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/esp'))()
+          end    
+    })
+
+    Tab:AddButton({
+        Name = "SYSTEMBROKEN - Made By MalwareHUB",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
+          end    
+    })
+    Tab:AddButton({
+        Name = "Infinite Yield FE v6 - Made by Unknown",
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+          end    
+    })
+    Tab:AddButton({
+        Name = "DEX Explorer - Made by Unknown",
+        Callback = function()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+          end    
+    })
+    
+end
+
+-- Rivals
+if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+    local Tab = Window:MakeTab({
+        Name = "Rivals",
+         Icon = "rbxassetid://4483345998",
+      })
+
+      Tab:AddButton({
+        Name = "Rivals Roblox GUI - Made By Skyee",
+        Callback = function()
+            local scriptURL = 'https://raw.githubusercontent.com/Sheeshablee73/Scriptss/main/RivalsUPD2.lua'
+        local response = game:HttpGet(scriptURL)
+        local executeScript = loadstring(response)
+        executeScript()
+          end    
+    })
+        
+    end
+if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+    local Tab = Window:MakeTab({
+        Name = "Blade Ball",
+         Icon = "rbxassetid://4483345998",
+      })
+
+      Tab:AddButton({
+        Name = "Triple Hub - Made By Triple",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/000177171/mantain-scripts/main/BB/TripleHub"))()
+          end    
+    })
+
+    Tab:AddButton({
+        Name = "Blade Ball Celert - Made By Fortnite GODxx223",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Blade%20ball%20celery"))()
+          end    
+    })
+        
+    end
+
+    if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+        local Tab = Window:MakeTab({
+            Name = "Arsenal",
+             Icon = "rbxassetid://4483345998",
+          })
+
+          Tab:AddButton({
+            Name = "Arsenal Gui - Made By MAJESTY",
+            Callback = function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Arsenal%20Gui"))()
+              end    
+        })
+
+          Tab:AddButton({
+            Name = "Aimbot - Made By neural",
+            Callback = function()
+                -- when you press your left mouse button the aimbot is enabled, when u let it go it gets disabled.
+
+getgenv().Settings = {
+    Radius = 100, -- The size of your aimbot FOV, i recommend between 50 - 300 :)
+}
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/diglt/Luau-Scripts/main/Test%20Project%209/Arsenal%20Aimbot.lua'))()
+              end    
+        })
+            
+        end
+
+        
+
+    if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+        local Tab = Window:MakeTab({
+            Name = "Da Hood",
+             Icon = "rbxassetid://4483345998",
+          })
+          Tab:AddLabel("Check the Detected Tab")
+    end
+
+        if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+            local Tab = Window:MakeTab({
+                Name = "Cat Piece",
+                 Icon = "rbxassetid://4483345998",
+              })
+              Tab:AddButton({
+                Name = "Katio Hub - Made By Katio",
+                Callback = function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaitofyp/Cat-Piece-V.2/main/Op%20script"))()
+                  end    
+            })
+                
+            end
+
+         if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+            local Tab = Window:MakeTab({
+                 Name = "Pressure",
+                   Icon = "rbxassetid://4483345998",
+                 })
+                 Tab:AddButton({
+                  Name = "Pressure Gui - Made By playvora",
+                   Callback = function()
+                      loadstring(game:HttpGet("https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Pressure%20Gui"))()
+                    end    
+               })
+                    
+                end
+
+            if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+            local Tab = Window:MakeTab({
+                 Name = "Color or Die",
+                   Icon = "rbxassetid://4483345998",
+                 })
+                 Tab:AddButton({
+                  Name = "Color or Die - Made By MAJESTY",
+                   Callback = function()
+                      loadstring(game:HttpGet("https://raw.githubusercontent.com/CeleryHub-official/CeleryHub/main/Color%20or%20die"))()
+                    end    
+               })
+                    
+                end
+
+            if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+                local Tab = Window:MakeTab({
+                    Name = "Combat Warriors",
+                    Icon = "rbxassetid://4483345998",
+                    })
+                    Tab:AddButton({
+                    Name = "Combat Warriors Celery - Made By kiizon",
+                    Callback = function()
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/CeleryHub/CeleryHub/main/scripts/cxmbxtwxrrixrs.lua"))()
+                        end    
+                })
+                        
+                    end
+
+
+    --[[
+if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+    local Tab = Window:MakeTab({
+        Name = "name",
+         Icon = "rbxassetid://4483345998",
+      })
+        
+    end
+
+
+    Tab:AddButton({
+        Name = "Name",
+        Callback = function()
+            loadstring
+          end    
+    })
+
+    Tab:AddLabel("text")
+
+    Supported Games
+    Rivals
+    Blade Ball
+    Da Hood
+    Cat Piece
+
+    Special Thanks to
+    Me - Universal Esp
+    Exunys - Airhub 
+    MalwareHUB - SYSTEMBROKEN
+    Skyee - Rivals Roblox GUI
+    Triple - Triple Hub (Blade Ball)
+    Katio - Katio Hub
+    ]]
+
+
+    if lvl >= 1 then -- if lvl is grater than or equal to 1(User)
+        local Tab = Window:MakeTab({
+            Name = "Detected",
+             Icon = "rbxassetid://4483345998",
+          })
+          Tab:AddLabel("WARNING SCRIPTS HERE ARE DETECTED!!!")
+          Tab:AddLabel("Da Hood")
+          Tab:AddButton({
+            Name = "Emptyness Hub - Made By Unknown",
+            Callback = function()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/TheEmptynessProject/EmptynessProject/main/index.lua"))()
+              end    
+        })
+        end
+
+    DevBuild = nil
+
+    MajesticLib:Init()
+
+    local RunService = game:GetService("RunService")
+    RunService.RenderStepped:Connect(function(frame)
+    Fps = math.round(1/frame)
+	text.Text = ("FPS: " .. Fps)
+    end)
